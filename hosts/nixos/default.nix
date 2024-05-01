@@ -1,6 +1,6 @@
 { config, inputs, lib, pkgs, agenix, ... }:
 
-let user = "dustin";
+let user = "dtzitzon";
     keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOk8iAnIaa1deoc7jw8YACPNVka1ZFJxhnU4G74TmS+p" ]; in
 {
   imports = [
@@ -8,6 +8,7 @@ let user = "dustin";
     ../../modules/nixos/disk-config.nix
     ../../modules/shared
     ../../modules/shared/cachix
+    ../../modules/shared/anduril
     agenix.nixosModules.default
   ];
 

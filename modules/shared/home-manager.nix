@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 
-let name = "Dustin Lyons";
-    user = "dustin";
-    email = "dustin@dlyons.dev"; in
+let name = "Demitri Tzitzon";
+    user = "dtzitzon";
+    email = "dtzitzon@anduril.com"; in
 {
 
   direnv = {
@@ -50,22 +50,11 @@ let name = "Dustin Lyons";
       # Remove history data we don't want to see
       export HISTIGNORE="pwd:ls:cd"
 
-      # Ripgrep alias
-      alias search='rg -p --glob "!node_modules/*" --glob "!vendor/*" "$@"'
-
-      # Emacs is my editor
-      export ALTERNATE_EDITOR=""
-      export EDITOR="emacsclient -t"
-      export VISUAL="emacsclient -c -a emacs"
-      e() {
-          emacsclient -t "$@"
-      }
+      # Vim settings
+      export EDITOR="vim"
 
       # Laravel Artisan
       alias art='php artisan'
-
-      # PHP Deployer
-      alias deploy='dep deploy'
 
       # Use difftastic, syntax-aware diffing
       alias diff=difft
@@ -87,14 +76,9 @@ let name = "Dustin Lyons";
       enable = true;
     };
     extraConfig = {
-      init.defaultBranch = "main";
-      core = { 
-	    editor = "vim";
-        autocrlf = "input";
+      core = {
+        editor = "vim";
       };
-      commit.gpgsign = true;
-      pull.rebase = true;
-      rebase.autoStash = true;
     };
   };
 
