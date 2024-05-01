@@ -250,31 +250,32 @@ let name = "Demitri Tzitzon";
   };
 
   ssh = {
-    enable = true;
+    # Disable until i can figure out how to make setup scripts work with managed ssh config
+    enable = false;
 
-    extraConfig = lib.mkMerge [
-      (lib.mkIf pkgs.stdenv.hostPlatform.isLinux
-        ''
-        Include /home/${user}/.ssh/config_external
-        '')
-      (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
-        ''
-        Include /Users/${user}/.ssh/config_external
-        '')
-      ''
-        Host github.com
-          Hostname github.com
-          IdentitiesOnly yes
-      ''
-      (lib.mkIf pkgs.stdenv.hostPlatform.isLinux
-        ''
-          IdentityFile /home/${user}/.ssh/id_github
-        '')
-      (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
-        ''
-          IdentityFile /Users/${user}/.ssh/id_github
-        '')
-    ];
+    # extraConfig = lib.mkMerge [
+    #   (lib.mkIf pkgs.stdenv.hostPlatform.isLinux
+    #     ''
+    #     Include /home/${user}/.ssh/config_external
+    #     '')
+    #   (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
+    #     ''
+    #     Include /Users/${user}/.ssh/config_external
+    #     '')
+    #   ''
+    #     Host github.com
+    #       Hostname github.com
+    #       IdentitiesOnly yes
+    #   ''
+    #   (lib.mkIf pkgs.stdenv.hostPlatform.isLinux
+    #     ''
+    #       IdentityFile /home/${user}/.ssh/id_github
+    #     '')
+    #   (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
+    #     ''
+    #       IdentityFile /Users/${user}/.ssh/id_github
+    #     '')
+    # ];
   };
 
   tmux = {
@@ -296,7 +297,7 @@ let name = "Demitri Tzitzon";
         # Use XDG data directory
         # https://github.com/tmux-plugins/tmux-resurrect/issues/348
         extraConfig = ''
-          set -g @resurrect-dir '/Users/dustin/.cache/tmux/resurrect'
+          set -g @resurrect-dir '/Users/dtzitzon/.cache/tmux/resurrect'
           set -g @resurrect-capture-pane-contents 'on'
           set -g @resurrect-pane-contents-area 'visible'
         '';
