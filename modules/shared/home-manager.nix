@@ -4,13 +4,6 @@ let name = "Demitri Tzitzon";
     user = "dtzitzon";
     email = "dtzitzon@anduril.com"; in
 {
-
-  direnv = {
-      enable = true;
-      enableZshIntegration = true;
-      nix-direnv.enable = true;
-    };
-
   zsh = {
     enable = true;
     autocd = false;
@@ -43,18 +36,11 @@ let name = "Demitri Tzitzon";
       export PATH=$HOME/.composer/vendor/bin:$PATH
       export PATH=$HOME/.local/share/bin:$PATH
 
-      export PNPM_HOME=~/.pnpm-packages
-      alias pn=pnpm
-      alias px=pnpx
-
       # Remove history data we don't want to see
       export HISTIGNORE="pwd:ls:cd"
 
       # Vim settings
       export EDITOR="vim"
-
-      # Laravel Artisan
-      alias art='php artisan'
 
       # Use difftastic, syntax-aware diffing
       alias diff=difft
@@ -62,8 +48,17 @@ let name = "Demitri Tzitzon";
       # Always color ls and group directories
       alias ls='ls --color=auto'
 
-      # Reboot into my dual boot Windows partition
-      alias windows='systemctl reboot --boot-loader-entry=auto-windows'
+      alias pbcopy='xclip -selection clipboard'
+      alias pbpaste='xclip -selection clipboard -o'
+      alias bashconfig="vim ~/.bashrc"
+      alias cdg="cd ~/go/src/ghe.anduril.dev/anduril"
+      alias cda="cd ~/sources/anix"
+      alias grbm="git fetch origin master && grb -i origin/master"
+      alias gcopy="git rev-parse HEAD | pbcopy"
+      alias clion="clion . &>/dev/null &"
+      alias goland="goland . &>/dev/null &"
+      alias nix-local="nix-shell --arg local true"
+      alias ecr-login="aws sso login && aws ecr get-login-password --region us-gov-west-1 | docker login --username AWS --password-stdin 187604170006.dkr.ecr.us-gov-west-1.amazonaws.com"
     '';
   };
 
@@ -191,174 +186,4 @@ let name = "Demitri Tzitzon";
       let g:airline_powerline_fonts = 1
       '';
      };
-
-  alacritty = {
-    enable = true;
-    settings = {
-      cursor = {
-        style = "Block";
-      };
-
-      window = {
-        opacity = 1.0;
-        padding = {
-          x = 24;
-          y = 24;
-        };
-      };
-
-      font = {
-        normal = {
-          family = "MesloLGS NF";
-          style = "Regular";
-        };
-        size = lib.mkMerge [
-          (lib.mkIf pkgs.stdenv.hostPlatform.isLinux 10)
-          (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin 14)
-        ];
-      };
-
-      colors = {
-        primary = {
-          background = "0x1f2528";
-          foreground = "0xc0c5ce";
-        };
-
-        normal = {
-          black = "0x1f2528";
-          red = "0xec5f67";
-          green = "0x99c794";
-          yellow = "0xfac863";
-          blue = "0x6699cc";
-          magenta = "0xc594c5";
-          cyan = "0x5fb3b3";
-          white = "0xc0c5ce";
-        };
-
-        bright = {
-          black = "0x65737e";
-          red = "0xec5f67";
-          green = "0x99c794";
-          yellow = "0xfac863";
-          blue = "0x6699cc";
-          magenta = "0xc594c5";
-          cyan = "0x5fb3b3";
-          white = "0xd8dee9";
-        };
-      };
-    };
-  };
-
-  ssh = {
-    # Disable until i can figure out how to make setup scripts work with managed ssh config
-    enable = false;
-
-    # extraConfig = lib.mkMerge [
-    #   (lib.mkIf pkgs.stdenv.hostPlatform.isLinux
-    #     ''
-    #     Include /home/${user}/.ssh/config_external
-    #     '')
-    #   (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
-    #     ''
-    #     Include /Users/${user}/.ssh/config_external
-    #     '')
-    #   ''
-    #     Host github.com
-    #       Hostname github.com
-    #       IdentitiesOnly yes
-    #   ''
-    #   (lib.mkIf pkgs.stdenv.hostPlatform.isLinux
-    #     ''
-    #       IdentityFile /home/${user}/.ssh/id_github
-    #     '')
-    #   (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
-    #     ''
-    #       IdentityFile /Users/${user}/.ssh/id_github
-    #     '')
-    # ];
-  };
-
-  tmux = {
-    enable = true;
-    plugins = with pkgs.tmuxPlugins; [
-      vim-tmux-navigator
-      sensible
-      yank
-      prefix-highlight
-      {
-        plugin = power-theme;
-        extraConfig = ''
-           set -g @tmux_power_theme 'gold'
-        '';
-      }
-      {
-        plugin = resurrect; # Used by tmux-continuum
-
-        # Use XDG data directory
-        # https://github.com/tmux-plugins/tmux-resurrect/issues/348
-        extraConfig = ''
-          set -g @resurrect-dir '/Users/dtzitzon/.cache/tmux/resurrect'
-          set -g @resurrect-capture-pane-contents 'on'
-          set -g @resurrect-pane-contents-area 'visible'
-        '';
-      }
-      {
-        plugin = continuum;
-        extraConfig = ''
-          set -g @continuum-restore 'on'
-          set -g @continuum-save-interval '5' # minutes
-        '';
-      }
-    ];
-    terminal = "screen-256color";
-    prefix = "C-x";
-    escapeTime = 10;
-    historyLimit = 50000;
-    extraConfig = ''
-      # Remove Vim mode delays
-      set -g focus-events on
-
-      # Enable full mouse support
-      set -g mouse on
-
-      # -----------------------------------------------------------------------------
-      # Key bindings
-      # -----------------------------------------------------------------------------
-
-      # Unbind default keys
-      unbind C-b
-      unbind '"'
-      unbind %
-
-      # Split panes, vertical or horizontal
-      bind-key x split-window -v
-      bind-key v split-window -h
-
-      # Move around panes with vim-like bindings (h,j,k,l)
-      bind-key -n M-k select-pane -U
-      bind-key -n M-h select-pane -L
-      bind-key -n M-j select-pane -D
-      bind-key -n M-l select-pane -R
-
-      # Smart pane switching with awareness of Vim splits.
-      # This is copy paste from https://github.com/christoomey/vim-tmux-navigator
-      is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-        | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
-      bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
-      bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'
-      bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k'  'select-pane -U'
-      bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l'  'select-pane -R'
-      tmux_version='$(tmux -V | sed -En "s/^tmux ([0-9]+(.[0-9]+)?).*/\1/p")'
-      if-shell -b '[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]' \
-        "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\'  'select-pane -l'"
-      if-shell -b '[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]' \
-        "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\\\'  'select-pane -l'"
-
-      bind-key -T copy-mode-vi 'C-h' select-pane -L
-      bind-key -T copy-mode-vi 'C-j' select-pane -D
-      bind-key -T copy-mode-vi 'C-k' select-pane -U
-      bind-key -T copy-mode-vi 'C-l' select-pane -R
-      bind-key -T copy-mode-vi 'C-\' select-pane -l
-      '';
-    };
 }
