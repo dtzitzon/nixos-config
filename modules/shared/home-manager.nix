@@ -6,8 +6,13 @@ let name = "Demitri Tzitzon";
 {
   zsh = {
     enable = true;
-    autocd = false;
-    cdpath = [ "~/.local/share/src" ];
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+    defaultKeymap = "viins";
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" ];
+    };
     plugins = [
       {
           name = "powerlevel10k";
@@ -21,20 +26,17 @@ let name = "Demitri Tzitzon";
       }
     ];
     initExtraFirst = ''
+      # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+      # Initialization code that may require console input (password prompts, [y/n]
+      # confirmations, etc.) must go above this block; everything else may go below.
+      if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+        source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+      fi
+
       if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
         . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
         . /nix/var/nix/profiles/default/etc/profile.d/nix.sh
       fi
-
-      if [[ "$(uname)" == "Linux" ]]; then
-        alias pbcopy='xclip -selection clipboard'
-      fi
-
-      # Define variables for directories
-      export PATH=$HOME/.pnpm-packages/bin:$HOME/.pnpm-packages:$PATH
-      export PATH=$HOME/.npm-packages/bin:$HOME/bin:$PATH
-      export PATH=$HOME/.composer/vendor/bin:$PATH
-      export PATH=$HOME/.local/share/bin:$PATH
 
       # Remove history data we don't want to see
       export HISTIGNORE="pwd:ls:cd"
@@ -44,6 +46,11 @@ let name = "Demitri Tzitzon";
 
       # Use difftastic, syntax-aware diffing
       alias diff=difft
+
+      # Anduril setup
+      export GOPRIVATE=ghe.anduril.dev
+      export NIX_PATH=nixpkgs=/Users/dtzitzon/sources/anix
+      if [ -e /Users/dtzitzon/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/dtzitzon/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
       # Always color ls and group directories
       alias ls='ls --color=auto'
@@ -57,8 +64,6 @@ let name = "Demitri Tzitzon";
       alias gcopy="git rev-parse HEAD | pbcopy"
       alias clion="clion . &>/dev/null &"
       alias goland="goland . &>/dev/null &"
-      alias nix-local="nix-shell --arg local true"
-      alias ecr-login="aws sso login && aws ecr get-login-password --region us-gov-west-1 | docker login --username AWS --password-stdin 187604170006.dkr.ecr.us-gov-west-1.amazonaws.com"
     '';
   };
 

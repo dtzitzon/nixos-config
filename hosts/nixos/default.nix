@@ -235,18 +235,8 @@ let user = "dtzitzon";
     # Let's be able to SSH into this machine
     openssh.enable = true;
 
-    # My editor runs as a daemon
-    emacs = {
-      enable = true;
-      package = pkgs.emacs-unstable;
-    };
-
     gvfs.enable = true; # Mount, trash, and other functionalities
     tumbler.enable = true; # Thumbnail support for images
-  };
-
-  systemd.user.services.emacs = {
-    serviceConfig.TimeoutStartSec = "7min";
   };
 
   # Enable sound
@@ -309,7 +299,6 @@ let user = "dtzitzon";
 
   fonts.packages = with pkgs; [
     dejavu_fonts
-    emacs-all-the-icons-fonts
     feather-font # from overlay
     jetbrains-mono
     font-awesome

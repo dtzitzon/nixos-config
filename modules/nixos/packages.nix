@@ -50,7 +50,6 @@ shared-packages ++ [
   qmk
   postgresql
   libusb1 # for Xbox controller
-  libtool # for Emacs vterm
 
   # Screenshot and recording tools
   flameshot
