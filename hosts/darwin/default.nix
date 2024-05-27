@@ -67,10 +67,10 @@ let user = "dtzitzon"; in
       dock = {
         autohide = true;
         show-recents = false;
-        launchanim = true;
+        launchanim = false;
         mouse-over-hilite-stack = true;
         orientation = "bottom";
-        tilesize = 96;
+        tilesize = 64;
       };
 
       finder = {
@@ -85,7 +85,7 @@ let user = "dtzitzon"; in
 
     keyboard = {
       enableKeyMapping = true;
-      remapCapsLockToControl = true;
+      remapCapsLockToEscape = true;
     };
   };
 }

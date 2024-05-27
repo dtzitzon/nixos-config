@@ -190,5 +190,64 @@ let name = "Demitri Tzitzon";
       let g:airline_theme='bubblegum'
       let g:airline_powerline_fonts = 1
       '';
-     };
+  };
+
+  vscode = {
+    enable = true;
+    extensions = with pkgs.vscode-extensions; [
+      golang.go
+      eamodio.gitlens
+      bbenoist.nix
+      dracula-theme.theme-dracula
+      vscodevim.vim
+      yzhang.markdown-all-in-one
+    ];
+    userSettings = {
+      "editor.autoClosingBrackets" = "never";
+      "editor.autoClosingQuotes" = "never";
+      "editor.formatOnSave" = true;
+      "editor.dragAndDrop" = false;
+      "editor.minimap.enabled" = false;
+      "editor.scrollBeyondLastLine" = false;
+      "editor.tabSize" = 2;
+
+      "explorer.confirmDelete" = false;
+      "explorer.confirmDragAndDrop" = false;
+
+      "files.insertFinalNewline" = true;
+      "files.trimTrailingWhitespace" = true;
+      "files.autoSave" = "onFocusChange";
+
+      "gitlens.currentLine.enabled" = false;
+      "gitlens.hovers.currentLine.over" = "line";
+      "gitlens.codeLens.scopes" = ["document"];
+      "github-enterprise.uri" = "https =//ghe.anduril.dev/";
+
+      "go.toolsManagement.autoUpdate" = true;
+      "go.coverOnTestPackage" = false;
+      "go.autocompleteUnimportedPackages" = true;
+
+      "keyboard.dispatch" = "keyCode";
+
+      "nix.formatterPath" = "";
+      "[nix]" = {
+        "editor.formatOnSave" = false;
+      };
+      "[markdown]" = {
+        "editor.formatOnSave" = false;
+      };
+      "[go]" = {
+        "editor.suggest.insertMode" = "insert";
+      };
+      "[python]" = {
+        "editor.defaultFormatter" = "ms-python.black-formatter";
+        "editor.formatOnType" = true;
+      };
+      "security.workspace.trust.untrustedFiles" = "open";
+      "window.zoomLevel" = 1;
+      "workbench.editor.revealIfOpen" = true;
+      "cmake.configureOnOpen" = true;
+      "redhat.telemetry.enabled" = false;
+    };
+  };
 }

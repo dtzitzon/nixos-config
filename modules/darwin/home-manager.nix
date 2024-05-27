@@ -72,6 +72,8 @@ in
       { path = "/Applications/zoom.us.app/"; }
       { path = "/Applications/iTerm.app/"; }
       { path = "/Applications/Google Chrome.app/"; }
+      { path = "/Applications/Spotify.app/"; }
+      { path = "/Applications/Visual Studio Code.app/"; }
     ];
   };
 }
