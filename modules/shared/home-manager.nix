@@ -47,6 +47,9 @@ let name = "Demitri Tzitzon";
       # Use difftastic, syntax-aware diffing
       alias diff=difft
 
+      export GOPATH="$HOME/go"
+      export PATH="$GOPATH/bin:$PATH"
+
       # Anduril setup
       export GOPRIVATE=ghe.anduril.dev
       export NIX_PATH=nixpkgs=/Users/dtzitzon/sources/anix
@@ -249,5 +252,67 @@ let name = "Demitri Tzitzon";
       "cmake.configureOnOpen" = true;
       "redhat.telemetry.enabled" = false;
     };
+    keybindings = [
+      {
+        key = "cmd+]";
+        command = "workbench.action.navigateRight";
+      }
+      {
+        key = "cmd+[";
+        command = "workbench.action.navigateLeft";
+      }
+      {
+        key = "shift+cmd+-";
+        command = "workbench.action.zoomOut";
+      }
+      {
+        key = "shift+cmd+-";
+        command = "-workbench.action.zoomOut";
+      }
+      {
+        key = "cmd+-";
+        command = "workbench.action.navigateBack";
+      }
+      {
+        key = "ctrl+-";
+        command = "-workbench.action.navigateBack";
+      }
+      {
+        key = "cmd+=";
+        command = "workbench.action.navigateForward";
+      }
+      {
+        key = "ctrl+shift+-";
+        command = "-workbench.action.navigateForward";
+      }
+      {
+        key = "cmd+-";
+        command = "-workbench.action.zoomOut";
+      }
+      {
+        key = "shift+cmd+=";
+        command = "workbench.action.zoomIn";
+      }
+      {
+        key = "cmd+=";
+        command = "-workbench.action.zoomIn";
+      }
+      {
+        key = "shift+cmd+right";
+        command = "workbench.action.moveEditorToNextGroup";
+      }
+      {
+        key = "ctrl+cmd+right";
+        command = "-workbench.action.moveEditorToNextGroup";
+      }
+      {
+        key = "shift+cmd+left";
+        command = "workbench.action.moveEditorToPreviousGroup";
+      }
+      {
+        key = "ctrl+cmd+left";
+        command = "-workbench.action.moveEditorToPreviousGroup";
+      }
+    ];
   };
 }
