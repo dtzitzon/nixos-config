@@ -11,6 +11,10 @@ with pkgs; [
   btop
   coreutils
   difftastic
+  direnv
+  nix-direnv
+  nixpkgs-fmt
+  nil
   du-dust
   gcc
   git-filter-repo
@@ -33,6 +37,7 @@ with pkgs; [
   # docker
   # docker-compose
   # awscli2 - marked broken Mar 22
+  awscli2
   flyctl
   google-cloud-sdk
   go
@@ -42,36 +47,6 @@ with pkgs; [
   terraform
   terraform-ls
   tflint
-
-  # Media-related packages
-  imagemagick
-  dejavu_fonts
-  ffmpeg
-  fd
-  font-awesome
-  glow
-  hack-font
-  jpegoptim
-  meslo-lgs-nf
-  noto-fonts
-  noto-fonts-emoji
-  pngquant
-
-  # PHP
-  php82
-  php82Packages.composer
-  php82Packages.php-cs-fixer
-  php82Extensions.xdebug
-  php82Packages.deployer
-  phpunit
-
-  # Node.js development tools
-  fzf
-  nodePackages.live-server
-  nodePackages.nodemon
-  nodePackages.prettier
-  nodePackages.npm
-  nodejs
 
   # Source code management, Git, GitHub tools
   gh

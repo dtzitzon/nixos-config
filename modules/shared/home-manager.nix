@@ -1,8 +1,10 @@
 { config, pkgs, lib, ... }:
 
-let name = "Demitri Tzitzon";
-    user = "dtzitzon";
-    email = "dtzitzon@anduril.com"; in
+let
+  name = "Demitri Tzitzon";
+  user = "dtzitzon";
+  email = "dtzitzon@anduril.com";
+in
 {
   zsh = {
     enable = true;
@@ -15,14 +17,14 @@ let name = "Demitri Tzitzon";
     };
     plugins = [
       {
-          name = "powerlevel10k";
-          src = pkgs.zsh-powerlevel10k;
-          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+        name = "powerlevel10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
       }
       {
-          name = "powerlevel10k-config";
-          src = lib.cleanSource ./config;
-          file = "p10k.zsh";
+        name = "powerlevel10k-config";
+        src = lib.cleanSource ./config;
+        file = "p10k.zsh";
       }
     ];
     initExtraFirst = ''
@@ -192,18 +194,25 @@ let name = "Demitri Tzitzon";
 
       let g:airline_theme='bubblegum'
       let g:airline_powerline_fonts = 1
-      '';
+    '';
   };
 
   vscode = {
     enable = true;
     extensions = with pkgs.vscode-extensions; [
-      golang.go
-      eamodio.gitlens
+      arrterian.nix-env-selector
       bbenoist.nix
       dracula-theme.theme-dracula
+      eamodio.gitlens
+      golang.go
+      jnoortheen.nix-ide
+      llvm-vs-code-extensions.vscode-clangd
+      mkhl.direnv
+      ms-vscode.cmake-tools
+      ms-vscode-remote.remote-ssh
       vscodevim.vim
       yzhang.markdown-all-in-one
+      zxh404.vscode-proto3
     ];
     userSettings = {
       "editor.autoClosingBrackets" = "never";
@@ -223,8 +232,8 @@ let name = "Demitri Tzitzon";
 
       "gitlens.currentLine.enabled" = false;
       "gitlens.hovers.currentLine.over" = "line";
-      "gitlens.codeLens.scopes" = ["document"];
-      "github-enterprise.uri" = "https =//ghe.anduril.dev/";
+      "gitlens.codeLens.scopes" = [ "document" ];
+      "github-enterprise.uri" = "https://ghe.anduril.dev/";
 
       "go.toolsManagement.autoUpdate" = true;
       "go.coverOnTestPackage" = false;
@@ -232,10 +241,22 @@ let name = "Demitri Tzitzon";
 
       "keyboard.dispatch" = "keyCode";
 
-      "nix.formatterPath" = "";
+      "nix.enableLanguageServer" = true;
+      "nix.serverPath" = "nil";
+      "nix.serverSettings" = {
+        "nil" = {
+          "diagnostics" = {
+            "ignored" = [ "unused_binding" "unused_with" ];
+          };
+          "formatting" = {
+            "command" = [ "nixpkgs-fmt" ];
+          };
+        };
+      };
       "[nix]" = {
         "editor.formatOnSave" = false;
       };
+
       "[markdown]" = {
         "editor.formatOnSave" = false;
       };
