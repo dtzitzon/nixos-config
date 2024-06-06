@@ -10,6 +10,7 @@ with pkgs; [
   bat
   btop
   coreutils
+  cmake
   difftastic
   direnv
   nix-direnv

@@ -271,6 +271,7 @@ in
       "window.zoomLevel" = 1;
       "workbench.editor.revealIfOpen" = true;
       "cmake.configureOnOpen" = true;
+      "cmake.showOptionsMovedNotification" = false;
       "redhat.telemetry.enabled" = false;
     };
     keybindings = [
