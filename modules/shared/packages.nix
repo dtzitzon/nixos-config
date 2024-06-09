@@ -43,7 +43,6 @@ with pkgs; [
   google-cloud-sdk
   go
   gopls
-  ngrok
   ssm-session-manager-plugin
   terraform
   terraform-ls
@@ -66,9 +65,4 @@ with pkgs; [
   unrar
   unzip
   zsh-powerlevel10k
-
-  # Python packages
-  black
-  python39
-  python39Packages.virtualenv
 ]

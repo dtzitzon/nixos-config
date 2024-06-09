@@ -1,7 +1,8 @@
 {
   description = "Demitri's Configuration for NixOS and MacOS";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:dtzitzon/nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=24.05";
     agenix.url = "github:ryantm/agenix";
     home-manager.url = "github:nix-community/home-manager";
     darwin = {

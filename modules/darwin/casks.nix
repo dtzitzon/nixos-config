@@ -5,7 +5,6 @@ _:
   # "homebrew/cask/docker"
   # "insomnia"
   # "tableplus"
-  # "ngrok"
   # "postico"
   # "visual-studio-code"
   # "wireshark"
