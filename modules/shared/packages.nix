@@ -3,7 +3,6 @@
 with pkgs; [
   # General packages for development and system management
   act
-  alacritty
   aspell
   aspellDicts.en
   bash-completion
@@ -28,7 +27,6 @@ with pkgs; [
   zip
 
   # Encryption and security tools
-  _1password
   age
   age-plugin-yubikey
   gnupg
@@ -48,9 +46,6 @@ with pkgs; [
   terraform-ls
   tflint
 
-  # Source code management, Git, GitHub tools
-  gh
-
   # Text and terminal utilities
   htop
   hunspell
@@ -59,7 +54,6 @@ with pkgs; [
   jetbrains.phpstorm
   jq
   ripgrep
-  slack
   tree
   tmux
   unrar
