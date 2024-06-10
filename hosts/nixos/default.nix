@@ -10,7 +10,7 @@ let user = "dtzitzon";
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
 
-  boot.loaders.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "sr_mod" ];
