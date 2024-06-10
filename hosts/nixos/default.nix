@@ -1,4 +1,4 @@
-{ config, inputs, lib, pkgs, agenix, ... }:
+{ config, inputs, lib, pkgs, modulesPath, ... }:
 
 let user = "dtzitzon";
     keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOk8iAnIaa1deoc7jw8YACPNVka1ZFJxhnU4G74TmS+p" ]; in
@@ -8,22 +8,29 @@ let user = "dtzitzon";
     ../../modules/shared
     ../../modules/shared/cachix
     ../../modules/shared/anduril
-    agenix.nixosModules.default
+    (modulesPath + "/profiles/qemu-guest.nix")
   ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot = {
-    loader = {
-      systemd-boot = {
-        enable = true;
-        configurationLimit = 42;
-      };
-      efi.canTouchEfiVariables = true;
+  boot.initrd.availableKernelModules = [ "xhci_pci" "sr_mod" ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ ];
+  boot.extraModulePackages = [ ];
+
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/1ac689da-6d65-4c20-8bb7-721921e02382";
+      fsType = "ext4";
     };
-    initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "v4l2loopback" ];
-    kernelModules = [ "uinput" "v4l2loopback" ];
-    extraModulePackages = [ pkgs.linuxPackages.v4l2loopback ];
-  };
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/68DA-485D";
+      fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
+    };
+
+  swapDevices = [ ];
+
+  nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
+
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -33,8 +40,12 @@ let user = "dtzitzon";
   # replicates the default behaviour.
   networking = {
     hostName = "dtzizon-nixos"; # Define your hostname.
-    useDHCP = false;
-    interfaces.eno1.useDHCP = true;
+    # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+    # (the default) this is the recommended approach. When using systemd-networkd it's
+    # still possible to use this option, but it's recommended to use it in conjunction
+    # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+    useDHCP = lib.mkDefault true;
+    # networking.interfaces.enp0s1.useDHCP = lib.mkDefault true;
   };
 
   # Turn on flag for proprietary software
@@ -53,15 +64,6 @@ let user = "dtzitzon";
   services = {
     # Let's be able to SSH into this machine
     openssh.enable = true;
-  };
-
-  # Sync state between machines
-  # Add docker daemon
-  virtualisation = {
-    docker = {
-      enable = true;
-      logDriver = "json-file";
-    };
   };
 
   # It's me, it's you, it's everyone
@@ -99,8 +101,6 @@ let user = "dtzitzon";
     agenix.packages."${pkgs.system}".default # "x86_64-linux"
     gitAndTools.gitFull
     linuxPackages.v4l2loopback
-    v4l-utils
-    inetutils
   ];
 
   system.stateVersion = "21.05"; # Don't change this
