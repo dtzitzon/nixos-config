@@ -11,7 +11,7 @@ in
     homeDirectory = "/home/${user}";
     packages = pkgs.callPackage ./packages.nix {};
     file = shared-files // import ./files.nix { inherit user pkgs; };
-    stateVersion = "21.05";
+    stateVersion = "24.05";
   };
 
   programs = shared-programs;

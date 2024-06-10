@@ -116,5 +116,5 @@ let user = "dtzitzon";
     linuxPackages.v4l2loopback
   ];
 
-  system.stateVersion = "21.05"; # Don't change this
+  system.stateVersion = "24.05";
 }
