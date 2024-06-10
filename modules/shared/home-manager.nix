@@ -255,6 +255,7 @@ in
       };
       "[nix]" = {
         "editor.formatOnSave" = false;
+        "editor.defaultFormatter" = "jnoortheen.nix-ide";
       };
 
       "[markdown]" = {

@@ -1,7 +1,7 @@
 { config, inputs, lib, pkgs, modulesPath, ... }:
 
 let user = "dtzitzon";
-    keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOk8iAnIaa1deoc7jw8YACPNVka1ZFJxhnU4G74TmS+p" ]; in
+    keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOEcNl59yh3ZeO6DmCF9dcFHY1Z6cBQUWqfsJR8WZPIG dtzitzon@anduril.com" ]; in
 {
   imports = [
     ../../modules/shared
@@ -61,8 +61,6 @@ let user = "dtzitzon";
       experimental-features = nix-command flakes
     '';
   };
-
-  nixpkgs.config.allowUnfree = true;
 
   programs = {
     # My shell
