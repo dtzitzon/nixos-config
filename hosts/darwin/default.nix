@@ -1,15 +1,13 @@
-{ agenix, config, pkgs, ... }:
+{ config, pkgs, ... }:
 
 let user = "dtzitzon"; in
 {
 
   imports = [
-    ../../modules/darwin/secrets.nix
     ../../modules/darwin/home-manager.nix
     ../../modules/shared
     ../../modules/shared/cachix
     ../../modules/shared/anduril
-     agenix.darwinModules.default
   ];
 
   # Auto upgrade nix package and the daemon service.
@@ -36,9 +34,7 @@ let user = "dtzitzon"; in
   system.checks.verifyNixPath = false;
 
   # Load configuration that is shared across systems
-  environment.systemPackages = with pkgs; [
-    agenix.packages."${pkgs.system}".default
-  ] ++ (import ../../modules/shared/packages.nix { inherit pkgs; });
+  environment.systemPackages = with pkgs; (import ../../modules/shared/packages.nix { inherit pkgs; });
 
   system = {
     stateVersion = 4;

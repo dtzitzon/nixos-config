@@ -1,14 +1,12 @@
-{ config, inputs, lib, pkgs, agenix, modulesPath, ... }:
+{ config, inputs, lib, pkgs, modulesPath, ... }:
 
 let user = "dtzitzon";
     keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOk8iAnIaa1deoc7jw8YACPNVka1ZFJxhnU4G74TmS+p" ]; in
 {
   imports = [
-    ../../modules/nixos/secrets.nix
     ../../modules/shared
     ../../modules/shared/cachix
     ../../modules/shared/anduril
-    agenix.nixosModules.default
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
 
@@ -114,7 +112,6 @@ let user = "dtzitzon";
   };
 
   environment.systemPackages = with pkgs; [
-    agenix.packages."${pkgs.system}".default # "x86_64-linux"
     gitAndTools.gitFull
     linuxPackages.v4l2loopback
   ];

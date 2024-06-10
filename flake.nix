@@ -3,7 +3,6 @@
   inputs = {
     # nixpkgs.url = "github:dtzitzon/nixpkgs";
     nixpkgs.url = "github:nixos/nixpkgs?ref=24.05";
-    agenix.url = "github:ryantm/agenix";
     home-manager.url = "github:nix-community/home-manager";
     darwin = {
       url = "github:LnL7/nix-darwin/master";
@@ -28,12 +27,8 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    secrets = {
-      url = "git+ssh://git@github.com/dtzitzon/nix-secrets.git";
-      flake = false;
-    };
   };
-  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, disko, agenix, secrets } @inputs:
+  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, disko } @inputs:
     let
       user = "dtzitzon";
       linuxSystems = [ "x86_64-linux" "aarch64-linux" ];
