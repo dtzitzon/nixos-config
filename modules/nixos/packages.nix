@@ -48,7 +48,6 @@ shared-packages ++ [
   rofi
   rofi-calc
   qmk
-  postgresql
   libusb1 # for Xbox controller
 
   # Screenshot and recording tools

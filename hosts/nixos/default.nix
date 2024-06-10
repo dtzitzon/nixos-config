@@ -5,7 +5,6 @@ let user = "dtzitzon";
 {
   imports = [
     ../../modules/nixos/secrets.nix
-    ../../modules/nixos/disk-config.nix
     ../../modules/shared
     ../../modules/shared/cachix
     ../../modules/shared/anduril

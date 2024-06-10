@@ -16,6 +16,7 @@ with pkgs; [
   nixpkgs-fmt
   nil
   du-dust
+  gcc
   git-filter-repo
   killall
   neofetch
