@@ -4,6 +4,7 @@
     # nixpkgs.url = "github:dtzitzon/nixpkgs";
     nixpkgs.url = "github:nixos/nixpkgs?ref=24.05";
     home-manager.url = "github:nix-community/home-manager";
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
     darwin = {
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,7 +29,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, disko } @inputs:
+  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, disko, vscode-server } @inputs:
     let
       user = "dtzitzon";
       linuxSystems = [ "x86_64-linux" "aarch64-linux" ];

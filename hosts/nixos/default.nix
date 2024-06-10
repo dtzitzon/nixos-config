@@ -1,4 +1,4 @@
-{ config, inputs, lib, pkgs, modulesPath, ... }:
+{ config, inputs, lib, pkgs, modulesPath, vscode-server, ... }:
 
 let user = "dtzitzon";
     keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOEcNl59yh3ZeO6DmCF9dcFHY1Z6cBQUWqfsJR8WZPIG dtzitzon@anduril.com" ]; in
@@ -7,6 +7,7 @@ let user = "dtzitzon";
     ../../modules/shared
     ../../modules/shared/cachix
     ../../modules/shared/anduril
+    vscode-server.nixosModules.default
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
 
@@ -76,6 +77,8 @@ let user = "dtzitzon";
       displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
     };
+
+    vscode-server.enable = true;
   };
 
   # It's me, it's you, it's everyone
