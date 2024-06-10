@@ -29,7 +29,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     secrets = {
-      url = "git+ssh://git@ghe.anduril.dev/dtzitzon/nix-secrets.git";
+      url = "git+ssh://git@github.com/dtzitzon/nix-secrets.git";
       flake = false;
     };
   };

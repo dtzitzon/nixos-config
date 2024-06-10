@@ -339,17 +339,17 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1714502562,
+        "lastModified": 1714502064,
         "narHash": "sha256-ieeH+jx8V83fqZvreQ0BCijm31IAUY20QwVHkaPGjrQ=",
-        "ref": "refs/heads/master",
-        "rev": "56011e2e3b65f309e246f382cce0156acc894d83",
+        "ref": "refs/heads/main",
+        "rev": "d640cef9434451d46aa3ffa7109ee7ecb9daceb9",
         "revCount": 1,
         "type": "git",
-        "url": "ssh://git@ghe.anduril.dev/dtzitzon/nix-secrets.git"
+        "url": "ssh://git@github.com/dtzitzon/nix-secrets.git"
       },
       "original": {
         "type": "git",
-        "url": "ssh://git@ghe.anduril.dev/dtzitzon/nix-secrets.git"
+        "url": "ssh://git@github.com/dtzitzon/nix-secrets.git"
       }
     },
     "systems": {
