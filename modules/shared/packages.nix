@@ -10,6 +10,7 @@ with pkgs; [
   btop
   coreutils
   cmake
+  cachix
   difftastic
   direnv
   nix-direnv
