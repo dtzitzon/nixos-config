@@ -13,7 +13,7 @@ in
     defaultKeymap = "viins";
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" ];
+      plugins = [ "git" "direnv" ];
     };
     plugins = [
       {
@@ -84,6 +84,7 @@ in
       core = {
         editor = "vim";
       };
+      push.default = "matching";
     };
   };
 
@@ -194,6 +195,22 @@ in
 
       let g:airline_theme='bubblegum'
       let g:airline_powerline_fonts = 1
+    '';
+  };
+
+  tmux = {
+    enable = true;
+    historyLimit = 15000;
+    keyMode = "vi";
+    newSession = true;
+  };
+
+  direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    config = builtins.fromTOML ''
+      [global]
+      load_dotenv = true
     '';
   };
 

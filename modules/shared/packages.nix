@@ -8,6 +8,8 @@ with pkgs; [
   bash-completion
   bat
   btop
+  cargo
+  clang
   coreutils
   cmake
   cachix
@@ -16,15 +18,17 @@ with pkgs; [
   nix-direnv
   nixpkgs-fmt
   nil
+  nodejs_18
   du-dust
-  gcc
   git-filter-repo
   killall
   neofetch
   openssh
   pandoc
+  rustc
   sqlite
   wget
+  yarn
   zip
 
   # Encryption and security tools
