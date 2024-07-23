@@ -233,6 +233,7 @@ in
       zxh404.vscode-proto3
       rust-lang.rust-analyzer
     ];
+    mutableExtensionsDir = false;
     userSettings = {
       "editor.autoClosingBrackets" = "never";
       "editor.autoClosingQuotes" = "never";
