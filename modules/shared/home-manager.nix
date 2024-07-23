@@ -85,6 +85,7 @@ in
         editor = "vim";
       };
       push.default = "matching";
+      advice.objectNameWarning = false;
     };
   };
 
@@ -230,6 +231,7 @@ in
       vscodevim.vim
       yzhang.markdown-all-in-one
       zxh404.vscode-proto3
+      rust-lang.rust-analyzer
     ];
     userSettings = {
       "editor.autoClosingBrackets" = "never";
