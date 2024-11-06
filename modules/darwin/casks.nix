@@ -11,6 +11,7 @@ _:
   # Utility Tools
   # "appcleaner"
   # "syncthing"
+  "rectangle"
 
   # Entertainment Tools
   "spotify"
