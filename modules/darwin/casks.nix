@@ -11,13 +11,13 @@ _:
   # Utility Tools
   # "appcleaner"
   # "syncthing"
-  "rectangle"
+  "karabiner-elements"
 
   # Entertainment Tools
   "spotify"
 
   # Productivity Tools
-  "alfred"
+  "raycast"
 
   # Browsers
   "google-chrome"

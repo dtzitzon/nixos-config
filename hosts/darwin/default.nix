@@ -79,12 +79,7 @@ let user = "dtzitzon"; in
     };
 
     keyboard = {
-      enableKeyMapping = true;
-      # remap escape to caps lock & vice versa
-      userKeyMapping = [
-        { HIDKeyboardModifierMappingSrc = 30064771113; HIDKeyboardModifierMappingDst = 30064771129; }
-        { HIDKeyboardModifierMappingSrc = 30064771129; HIDKeyboardModifierMappingDst = 30064771113; }
-      ];
+      enableKeyMapping = false;
     };
   };
 }

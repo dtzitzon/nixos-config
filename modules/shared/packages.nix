@@ -22,6 +22,7 @@ with pkgs; [
   du-dust
   git-filter-repo
   killall
+  meslo-lgs-nf
   neofetch
   openssh
   pandoc
