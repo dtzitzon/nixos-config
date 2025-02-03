@@ -1,7 +1,19 @@
-{ config, inputs, lib, pkgs, modulesPath, vscode-server, ... }:
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  modulesPath,
+  vscode-server,
+  ...
+}:
 
-let user = "dtzitzon";
-    keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOEcNl59yh3ZeO6DmCF9dcFHY1Z6cBQUWqfsJR8WZPIG dtzitzon@anduril.com" ]; in
+let
+  user = "dtzitzon";
+  keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOEcNl59yh3ZeO6DmCF9dcFHY1Z6cBQUWqfsJR8WZPIG dtzitzon@anduril.com"
+  ];
+in
 {
   imports = [
     ../../modules/shared
@@ -14,28 +26,31 @@ let user = "dtzitzon";
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "sr_mod" ];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "sr_mod"
+  ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/1ac689da-6d65-4c20-8bb7-721921e02382";
+    fsType = "ext4";
+  };
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/1ac689da-6d65-4c20-8bb7-721921e02382";
-      fsType = "ext4";
-    };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/68DA-485D";
-      fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/68DA-485D";
+    fsType = "vfat";
+    options = [
+      "fmask=0022"
+      "dmask=0022"
+    ];
+  };
 
   swapDevices = [ ];
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
-
-
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -87,7 +102,6 @@ let user = "dtzitzon";
       isNormalUser = true;
       extraGroups = [
         "wheel" # Enable ‘sudo’ for the user.
-        "docker"
       ];
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = keys;
@@ -101,15 +115,17 @@ let user = "dtzitzon";
   # Don't require password for users in `wheel` group for these commands
   security.sudo = {
     enable = true;
-    extraRules = [{
-      commands = [
-       {
-         command = "${pkgs.systemd}/bin/reboot";
-         options = [ "NOPASSWD" ];
-        }
-      ];
-      groups = [ "wheel" ];
-    }];
+    extraRules = [
+      {
+        commands = [
+          {
+            command = "${pkgs.systemd}/bin/reboot";
+            options = [ "NOPASSWD" ];
+          }
+        ];
+        groups = [ "wheel" ];
+      }
+    ];
   };
 
   environment.systemPackages = with pkgs; [

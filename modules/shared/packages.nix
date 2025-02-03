@@ -16,7 +16,7 @@ with pkgs; [
   difftastic
   direnv
   nix-direnv
-  nixpkgs-fmt
+  nixfmt-rfc-style
   nil
   nodejs_18
   du-dust
@@ -51,6 +51,7 @@ with pkgs; [
   terraform
   terraform-ls
   tflint
+  tailscale
 
   # Text and terminal utilities
   htop

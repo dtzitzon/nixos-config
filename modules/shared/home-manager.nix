@@ -228,6 +228,7 @@ in
       mkhl.direnv
       ms-vscode.cmake-tools
       ms-vscode-remote.remote-ssh
+      ms-python.python
       vscodevim.vim
       yzhang.markdown-all-in-one
       zxh404.vscode-proto3
@@ -262,6 +263,7 @@ in
       "keyboard.dispatch" = "keyCode";
 
       "nix.enableLanguageServer" = true;
+      "nix.formatterPath" = [ "nixfmt" ];
       "nix.serverPath" = "nil";
       "nix.serverSettings" = {
         "nil" = {
@@ -269,12 +271,13 @@ in
             "ignored" = [ "unused_binding" "unused_with" ];
           };
           "formatting" = {
-            "command" = [ "nixpkgs-fmt" ];
+            "command" = [ "nixfmt" ];
           };
         };
       };
       "[nix]" = {
-        "editor.formatOnSave" = false;
+        "editor.formatOnSave" = true;
+        "editor.formatOnPaste" = true;
         "editor.defaultFormatter" = "jnoortheen.nix-ide";
       };
 

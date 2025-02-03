@@ -2,23 +2,23 @@ _:
 
 [
   # Development Tools
-  "visual-studio-code"
-  "iterm2"
+  # "visual-studio-code"
+  # "iterm2"
 
   # Communication Tools
-  "zoom"
+  # "zoom"
 
   # Utility Tools
   # "appcleaner"
   # "syncthing"
-  "karabiner-elements"
+  # "karabiner-elements"
 
   # Entertainment Tools
-  "spotify"
+  # "spotify"
 
   # Productivity Tools
-  "raycast"
+  # "raycast"
 
   # Browsers
-  "google-chrome"
+  # "google-chrome"
 ]
